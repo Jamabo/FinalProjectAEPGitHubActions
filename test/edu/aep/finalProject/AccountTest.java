@@ -42,4 +42,13 @@ public class AccountTest {
         assertEquals(0,testSendAccount.balance);
     }
 
+    //Tests checkRetirement
+    @Test
+    public void RetirementCheckShouldWorkWithFollowingInput()
+    {
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(1000000);
+        assertEquals(true,testAccount.checkRetirement(50, 80, 20000));
+    }
+
 }

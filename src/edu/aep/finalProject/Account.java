@@ -62,6 +62,15 @@ public class Account {
         ReceiverAccount.balance = ReceiverAccount.balance + amount;
     }
 
+    boolean checkRetirement (int age, int lifeExpectancy, int yearlyExpenses){
+        int yearsToBeCovered = lifeExpectancy - age;
+        if (yearlyExpenses * yearsToBeCovered <= balance){
+            return true;
+        }
+        else
+        return false;
+    }
+
 
 
     //method for showing the main menu
@@ -78,8 +87,9 @@ public class Account {
         System.out.println("C. Make a withdrawal");
         System.out.println("D. View previous transaction");
         System.out.println("E. Calculate interest");
-        System.out.println("F. Send Money");
-        System.out.println("G. Exit");
+        System.out.println("F. Send money");
+        System.out.println("G. Check if retirement possible");
+        System.out.println("H. Exit");
 
 
     do {
@@ -125,7 +135,7 @@ public class Account {
                 calculateInterest(years);
                 break;
             case 'F':
-             //   send money
+                //send money
                 System.out.println("Enter the name of the receiver: ");
                 String customerName = scanner.next();
                 Account Receiver = new Account (customerName,"A00003"); //Hacky
@@ -136,8 +146,21 @@ public class Account {
                 System.out.println("You have sent $" + amountToBeSent + " to " + Receiver);
                 System.out.println("==========================================");
                 System.out.println("Your new balance is: $" + balance);
-
+                break;
             case 'G':
+                //retirement possible?
+                System.out.println("Enter your age: ");
+                int age = scanner.nextInt();
+                System.out.println("Enter your life expectancy: ");
+                int lifeExpectancy = scanner.nextInt();
+                System.out.println("Enter your estimated yearly expenses: ");
+                int yearlyExpenses = scanner.nextInt();
+                if (checkRetirement(age, lifeExpectancy, yearlyExpenses) == true){
+                    System.out.println("Congratulations! You have enough money in the bank to retire.");
+                } else
+                    System.out.println("You do not have enough money in the bank to retire. We hope your job is fulfilling. Think about starting to invest with us.");
+                break;
+            case 'H':
                 //exit
                 System.out.println("==========================================");
                 break;
