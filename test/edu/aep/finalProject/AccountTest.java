@@ -21,6 +21,14 @@ public class AccountTest {
         assertEquals(-2000, testAccount.balance);
     }
 
-
+  //Tests interest calculation
+    @Test
+    public void OneThousandWithTwoPercentInterestOverFiveYearsShouldGiveUsANewBalanceOf1104()
+    {
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(1000);
+        testAccount.calculateInterest(5);
+        assertEquals(1104,(int)(testAccount.hypotheticalInterestBalance));
+    }
 
 }
