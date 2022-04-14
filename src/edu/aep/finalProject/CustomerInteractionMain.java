@@ -5,6 +5,7 @@ public class CustomerInteractionMain {
 
         //Create account for Jan
         Account jan = new Account("Jan", "A00001");
+        jan.showMenu();
 
     }
 }

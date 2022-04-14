@@ -31,4 +31,15 @@ public class AccountTest {
         assertEquals(1104,(int)(testAccount.hypotheticalInterestBalance));
     }
 
+    //Tests sendMoney
+    @Test
+    public void SendingOneThousandToOtherAccountShouldLowerBalanceByOneThousand()
+    {
+        Account testSendAccount = new Account("sender","testID");
+        Account testReceiveAccount = new Account ("receiver", "testID");
+        testSendAccount.deposit(1000);
+        testSendAccount.sendMoney(testReceiveAccount, 1000);
+        assertEquals(0,testSendAccount.balance);
+    }
+
 }
