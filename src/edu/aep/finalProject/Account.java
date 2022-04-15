@@ -7,6 +7,7 @@ public class Account {
     //Class Variables
     int balance;
     int previousTransaction;
+    int additionalSavingsNeeded;
     double hypotheticalInterestBalance;
     String customerName;
     String customerID;
@@ -69,6 +70,14 @@ public class Account {
         }
         else
         return false;
+    }
+
+    void calculateAdditionalSavingsNeededForRetirement (int age, int lifeExpectancy, int yearlyExpenses){
+
+        if (checkRetirement(age, lifeExpectancy, yearlyExpenses) == false){
+            additionalSavingsNeeded = (lifeExpectancy - age) * yearlyExpenses - balance;
+            System.out.println("You need to save an additional $" + additionalSavingsNeeded +" to retire.");
+        }
     }
 
 
@@ -161,6 +170,18 @@ public class Account {
                     System.out.println("You do not have enough money in the bank to retire. We hope your job is fulfilling. Think about starting to invest with us.");
                 break;
             case 'H':
+                //calculate additionally needed savings for retirement
+                System.out.println("Enter your age: ");
+                int age2 = scanner.nextInt();
+                System.out.println("Enter your life expectancy: ");
+                int lifeExpectancy2 = scanner.nextInt();
+                System.out.println("Enter your estimated yearly expenses: ");
+                int yearlyExpenses2 = scanner.nextInt();
+                if (checkRetirement(age2,lifeExpectancy2,yearlyExpenses2)==true){
+                    System.out.println("You have enough money in the bank to retire. No need to save more.");
+                } else calculateAdditionalSavingsNeededForRetirement(age2,lifeExpectancy2,yearlyExpenses2);
+                break;
+            case 'I':
                 //exit
                 System.out.println("==========================================");
                 break;

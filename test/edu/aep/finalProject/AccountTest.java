@@ -51,4 +51,11 @@ public class AccountTest {
         assertEquals(true,testAccount.checkRetirement(50, 80, 20000));
     }
 
+    @Test
+    public void RetirementCalculatorShouldAskForXAdditionalSavings(){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(1);
+        testAccount.calculateAdditionalSavingsNeededForRetirement(50,100,1);
+        assertEquals(49,testAccount.additionalSavingsNeeded);
+    }
 }
