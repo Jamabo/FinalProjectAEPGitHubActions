@@ -88,7 +88,7 @@ public class Account {
 
     void investInBond (int investmentAmount, int interestRate, int years){
     if (checkBalanceSufficiency(investmentAmount)){
-        hypotheticalBalanceAfterBondInvest = (balance - investmentAmount) + investmentAmount * Math.pow(1 + interestRate/100,years);
+        hypotheticalBalanceAfterBondInvest = (balance - investmentAmount) + investmentAmount * Math.pow(1 + (double)interestRate/100,years);
     }
     else
         System.out.println("You do not have enough money in your bank account for this investment.");
