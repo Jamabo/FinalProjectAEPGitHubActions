@@ -9,6 +9,7 @@ public class Account {
     int previousTransaction;
     int additionalSavingsNeeded;
     double hypotheticalInterestBalance;
+    double hypotheticalBalanceAfterBondInvest;
     String customerName;
     String customerID;
 
@@ -79,6 +80,15 @@ public class Account {
             System.out.println("You need to save an additional $" + additionalSavingsNeeded +" to retire.");
         }
     }
+
+    boolean checkBalanceSufficiency (int amount){
+        if (amount <= balance) return true;
+        return false;
+    }
+
+    //void investInBond (int investmentAmount, double interestRate, int years){
+
+   // }
 
 
 

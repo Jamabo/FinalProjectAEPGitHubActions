@@ -58,4 +58,27 @@ public class AccountTest {
         testAccount.calculateAdditionalSavingsNeededForRetirement(50,100,1);
         assertEquals(49,testAccount.additionalSavingsNeeded);
     }
+
+    @Test
+    public void DepositOf2000ShouldBeEnoughToPay1000 (){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(2000);
+        assertEquals(true, testAccount.checkBalanceSufficiency(1000));
+    }
+
+    @Test
+    public void DepositOf500ShouldNotBeEnoughToPay1000 (){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(500);
+        assertEquals(false, testAccount.checkBalanceSufficiency(1000));
+    }
+
+   /** @Test
+    public void Investing10kInBondAt5PercentFor2YearsShouldYield11025(){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(20000);
+        testAccount.investInBond(50,100,1); //investmentAmount, interestRate, years
+        assertEquals(11025,testAccount.hypotheticalBalanceAfterBondInvest);
+    }
+   **/
 }
