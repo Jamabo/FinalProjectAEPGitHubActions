@@ -86,9 +86,13 @@ public class Account {
         return false;
     }
 
-    //void investInBond (int investmentAmount, double interestRate, int years){
-
-   // }
+    void investInBond (int investmentAmount, int interestRate, int years){
+    if (checkBalanceSufficiency(investmentAmount)){
+        hypotheticalBalanceAfterBondInvest = (balance - investmentAmount) + investmentAmount * Math.pow(1 + interestRate/100,years);
+    }
+    else
+        System.out.println("You do not have enough money in your bank account for this investment.");
+    }
 
 
 
@@ -108,7 +112,9 @@ public class Account {
         System.out.println("E. Calculate interest");
         System.out.println("F. Send money");
         System.out.println("G. Check if retirement possible");
-        System.out.println("H. Exit");
+        System.out.println("H. Calculate additional savings needed for retirement");
+        System.out.println("I. Invest in bond");
+        System.out.println("J. Exit");
 
 
     do {
@@ -191,7 +197,23 @@ public class Account {
                     System.out.println("You have enough money in the bank to retire. No need to save more.");
                 } else calculateAdditionalSavingsNeededForRetirement(age2,lifeExpectancy2,yearlyExpenses2);
                 break;
+
             case 'I':
+                //invest in bond
+                System.out.println("Enter the amount you want to invest in a bond: ");
+                int amountInvest = scanner.nextInt();
+
+                System.out.println("Enter the interest rate the investment promises: ");
+                int interestRateBond = scanner.nextInt();
+
+                System.out.println("Enter the number of years you want to invest: ");
+                int investmentYears = scanner.nextInt();
+
+                investInBond(amountInvest, interestRateBond, investmentYears);
+                System.out.println("Your future bank balance after this investment would be $" + hypotheticalBalanceAfterBondInvest);
+                System.out.println("This means that the investment yields a profit of $" + (hypotheticalBalanceAfterBondInvest-balance));
+                break;
+            case 'J':
                 //exit
                 System.out.println("==========================================");
                 break;
@@ -200,7 +222,7 @@ public class Account {
                 break;
         }
         }
-            while(option != 'G');
+            while(option != 'J');
             System.out.println("Thank you for banking with us.");
     }
 

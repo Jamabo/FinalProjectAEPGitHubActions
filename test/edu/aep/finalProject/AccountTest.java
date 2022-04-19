@@ -73,12 +73,12 @@ public class AccountTest {
         assertEquals(false, testAccount.checkBalanceSufficiency(1000));
     }
 
-   /** @Test
-    public void Investing10kInBondAt5PercentFor2YearsShouldYield11025(){
+    @Test
+    public void Investing10of20kAccountInBondAt5PercentFor2YearsShouldYield21025(){
         Account testAccount = new Account("test","testID");
         testAccount.deposit(20000);
-        testAccount.investInBond(50,100,1); //investmentAmount, interestRate, years
-        assertEquals(11025,testAccount.hypotheticalBalanceAfterBondInvest);
+        testAccount.investInBond(10000,5,2); //investmentAmount, interestRate, years
+        assertEquals(21025,testAccount.hypotheticalBalanceAfterBondInvest,1);
     }
-   **/
+
 }
