@@ -81,4 +81,12 @@ public class AccountTest {
         assertEquals(21025,testAccount.hypotheticalBalanceAfterBondInvest,1);
     }
 
+    @Test
+    public void openingNewAccountWithStartBalance2000ShouldReduceBalanceofOldAccountBy2000(){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(5000);
+        testAccount.openNewAccount(2000, "NewTestAccount");
+        assertEquals(3000, testAccount.balance);
+    }
+
 }

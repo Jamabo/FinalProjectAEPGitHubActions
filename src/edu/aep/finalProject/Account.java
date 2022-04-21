@@ -94,6 +94,12 @@ public class Account {
         System.out.println("You do not have enough money in your bank account for this investment.");
     }
 
+    void openNewAccount (int startMoney, String newAccountName) {
+        Account newAccount = new Account(newAccountName, "A0002");
+        newAccount.balance = startMoney;
+        balance = balance - startMoney;
+    }
+
 
 
     //method for showing the main menu
