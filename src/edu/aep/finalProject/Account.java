@@ -2,7 +2,7 @@ package edu.aep.finalProject;
 
 import java.util.Scanner;
 
-//Understands the different banking operations a customer can do.
+//Understands the different banking operations a customer can access.
 public class Account {
     //Class Variables
     int balance;
@@ -53,7 +53,7 @@ public class Account {
     //method for calculating the interest on current funds after a number of years
     void calculateInterest (int years){
         double interestRate = 0.02;
-        double newBalance = balance * Math.pow(1 + interestRate,years);
+        int newBalance = (int) (balance * Math.pow(1 + interestRate,years));
         hypotheticalInterestBalance = newBalance; //hypotheticalInterestRateBalance introduced for testing purposes
         System.out.println("The current interest rate is: " + (100 * interestRate) + "%");
         System.out.println("After " + years + " years your balance will be " + newBalance);
@@ -88,7 +88,7 @@ public class Account {
 
     void investInBond (int investmentAmount, int interestRate, int years){
     if (checkBalanceSufficiency(investmentAmount)){
-        hypotheticalBalanceAfterBondInvest = (balance - investmentAmount) + investmentAmount * Math.pow(1 + (double)interestRate/100,years);
+        hypotheticalBalanceAfterBondInvest = (int)((balance - investmentAmount) + investmentAmount * Math.pow(1 + (double)interestRate/100,years));
     }
     else
         System.out.println("You do not have enough money in your bank account for this investment.");
@@ -98,6 +98,12 @@ public class Account {
         Account newAccount = new Account(newAccountName, "A0002");
         newAccount.balance = startMoney;
         balance = balance - startMoney;
+    }
+
+    void closeAccount() {
+        int cashPayout = balance;
+        balance = balance - cashPayout;
+        //set status_active boolean to false
     }
 
 
@@ -120,7 +126,8 @@ public class Account {
         System.out.println("G. Check if retirement possible");
         System.out.println("H. Calculate additional savings needed for retirement");
         System.out.println("I. Invest in bond");
-        System.out.println("J. Exit");
+        System.out.println("J. Open new (sub)account");
+        System.out.println("K. Exit");
 
 
     do {
@@ -209,7 +216,7 @@ public class Account {
                 System.out.println("Enter the amount you want to invest in a bond: ");
                 int amountInvest = scanner.nextInt();
 
-                System.out.println("Enter the interest rate the investment promises: ");
+                System.out.println("Enter the interest rate (in %) the investment promises: ");
                 int interestRateBond = scanner.nextInt();
 
                 System.out.println("Enter the number of years you want to invest: ");
@@ -220,6 +227,22 @@ public class Account {
                 System.out.println("This means that the investment yields a profit of $" + (hypotheticalBalanceAfterBondInvest-balance));
                 break;
             case 'J':
+                //open new account
+                System.out.println("Enter the name for the new account: ");
+                String newAccountName = scanner.next();
+
+                System.out.println("Enter the amount you want to transfer as a starting balance of the new account: ");
+                int startMoney = scanner.nextInt();
+
+                openNewAccount(startMoney, newAccountName);
+                System.out.println("Great! You have opened a new account with the name " + newAccountName + " and an initial balance of $" + startMoney + ".");
+                break;
+            case 'K':
+                //close account
+                System.out.println("We understand you want to close your account. We will now pay out your remaining balance of $" + balance + ". Thank you.");
+                closeAccount();
+                break;
+            case 'L':
                 //exit
                 System.out.println("==========================================");
                 break;
@@ -228,7 +251,7 @@ public class Account {
                 break;
         }
         }
-            while(option != 'J');
+            while(option != 'L');
             System.out.println("Thank you for banking with us.");
     }
 

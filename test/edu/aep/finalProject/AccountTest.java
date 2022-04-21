@@ -89,4 +89,12 @@ public class AccountTest {
         assertEquals(3000, testAccount.balance);
     }
 
+    @Test
+    public void closingAccountShouldMakeBalanceZero(){
+        Account testAccount = new Account("test","testID");
+        testAccount.deposit(5000);
+        testAccount.closeAccount();
+        assertEquals(0, testAccount.balance);
+    }
+
 }
